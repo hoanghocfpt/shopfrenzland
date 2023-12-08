@@ -5,7 +5,7 @@ import React from 'react';
 const ProductCardItem = () => {
     return (
       <Link href='/products/1'>
-        <div className="max-w-sm rounded overflow-hidden shadow-lg ">
+        <div className="max-w-md rounded overflow-hidden shadow-lg w-full">
           <div className="flex justify-center">
             <Image className='w-full h-full object-cover' src="/images/product/product2.jpg" alt="Apple Watch" width={262} height={358} />
           </div>

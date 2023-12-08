@@ -5,7 +5,7 @@ import React from 'react';
 const Header = () => {
     return (
         <nav className="bg-white shadow py-4 sticky top-0">
-            <div className="max-w-screen-2xl w-full mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-screen-2xl w-full mx-auto sm:px-4 md:px-4 lg:px-0 px-4">
                 <div className="flex justify-between h-16">
                     <div className="flex">
                         <div className="flex-shrink-0 flex items-center justify-start">
