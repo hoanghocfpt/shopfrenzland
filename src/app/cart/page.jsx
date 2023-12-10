@@ -1,31 +1,72 @@
+import Image from 'next/image';
 import React from 'react';
 
 const CartPage = () => {
     return (
-        <div>
-            <h2>Cart</h2>
+        <div className='max-w-screen-xl py-8 px-4 mx-auto'>
+            <h2 className='font-medium text-3xl'>Cart</h2>
             <div className=''>
-                <ul className=''>
-                    <li className=''>
-                        <div>
-                            <img className='' src='' alt='' />
+                <div className='flex justify-between border-b border-gray-300 py-4 w-full'>
+                    <span className='text-base font-medium w-6/12'>Products</span>
+                    <span className='text-base font-medium w-4/12 text-left'>Quantity</span>
+                    <span className='text-base font-medium w-2/12 text-right'>Subtotal</span>
+                </div>
+                <ul className='w-full'>
+                    <li className='flex justify-between w-full border-b py-5 items-center'>
+                        <div className='flex-shrink-0 max-w-full w-1/12 h-32'>
+                            <Image className='w-full h-full object-cover' src='/images/product/product2.jpg' width={100} height={100} alt='' />
                         </div>
-                        <div>
-                            <h4>BLACK IGLOO HOODIE</h4>
-                            <span>$99.99</span>
+                        <div className='flex-shrink-0 max-w-full w-5/12 text-left px-4'>
+                            <h4 className='font-bold text-base'>BLACK IGLOO HOODIE</h4>
+                            <span className='font-normal'>$99.99</span>
                         </div>
-                        <div>
-                            <button className=''>-</button>
-                            <span>1</span>
-                            <button className=''>+</button>
+                        <div className='flex-shrink-0 w-3/12 '>
+                            <div className='w-28 px-2 flex h-10  border rounded-lg border-black '>
+                                <div className='flex items-center justify-center cursor-pointer'>
+                                    <Image className='w-12' src='/asset/icons/minus.svg' width={24} height={24} alt='' />
+                                </div>
+                                <input className='w-full h-full outline-none text-center font-semibold' type='text' name='quantity' value={1}></input>
+                                <div className='flex items-center justify-center cursor-pointer'>
+                                    <Image className='w-12' src='/asset/icons/plus.svg' width={24} height={24} alt='' />
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                            <span>$99.99</span>
+                        <div className='flex-shrink-0 max-w-full w-2/12'>
+                            <span className='font-medium text-lg text-black'>$99.99</span>
                         </div>
-                        <div>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
-                            </svg>
+                        <div className='flex-shrink-0 max-w-full w-1/12'>
+                            <div className='flex justify-end cursor-pointer'>
+                                <Image className='w-6' src='/asset/icons/delete.svg' width={24} height={24} alt='' />
+                            </div>
+
+                        </div>
+                    </li>
+                    <li className='flex justify-between w-full border-b py-5 items-center'>
+                        <div className='flex-shrink-0 max-w-full w-1/12 h-32'>
+                            <Image className='w-full h-full object-cover' src='/images/product/product2.jpg' width={100} height={100} alt='' />
+                        </div>
+                        <div className='flex-shrink-0 max-w-full w-5/12 text-left px-4'>
+                            <h4 className='font-bold text-base'>BLACK IGLOO HOODIE</h4>
+                            <span className='font-normal'>$99.99</span>
+                        </div>
+                        <div className='flex-shrink-0 w-3/12 '>
+                            <div className='w-28 px-2 flex h-10  border rounded-lg border-black '>
+                                <div className='flex items-center justify-center cursor-pointer'>
+                                    <Image className='w-12' src='/asset/icons/minus.svg' width={24} height={24} alt='' />
+                                </div>
+                                <input className='w-full h-full outline-none text-center font-semibold' type='text' name='quantity' value={1}></input>
+                                <div className='flex items-center justify-center cursor-pointer'>
+                                    <Image className='w-12' src='/asset/icons/plus.svg' width={24} height={24} alt='' />
+                                </div>
+                            </div>
+                        </div>
+                        <div className='flex-shrink-0 max-w-full w-2/12'>
+                            <span className='font-medium text-lg text-black'>$99.99</span>
+                        </div>
+                        <div className='flex-shrink-0 max-w-full w-1/12'>
+                            <div className='flex justify-end cursor-pointer'>
+                                <Image className='w-6' src='/asset/icons/delete.svg' width={24} height={24} alt='' />
+                            </div>
 
                         </div>
                     </li>
