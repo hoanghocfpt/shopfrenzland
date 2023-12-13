@@ -30,7 +30,8 @@ const Header = () => {
                             Login
                         </button>
                     </div>
-                    <div className='cursor-pointer sm:hidden'>
+                    <div className='cursor-pointer flex gap-3 items-center sm:hidden'>
+                        <CountCart />
                         <Image src="/asset/icons/menu.svg" width={24} height={24} alt="search_icon"/>
                     </div>
                 </div>
