@@ -2,7 +2,7 @@ import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 
 import ProductItem from './ProductItem';
-import TotalCart from './totalCart';
+import TotalCart from './TotalCart';
 
 const CartMain = () => {
     

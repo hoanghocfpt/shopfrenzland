@@ -24,13 +24,13 @@ const Main = () => {
         if (product) {
           let productToCart = {
             id: product.id,
+            price: product.price, // Add this line
           };
     
           addToCart(productToCart);
           setAddedToCart(true);
         }
-    };
-
+    }; 
     return (
         <div className='flex w-full'>
         <div className='flex-shrink-0 pr-8 w-5/12'>

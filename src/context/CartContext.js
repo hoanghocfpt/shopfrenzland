@@ -5,6 +5,7 @@ export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
     const [cart, setCart] = useState([]);
+    const [grandTotal, setTotalCart] = useState(0);
 
     useEffect(() => {
         const localCart = localStorage.getItem('cartItem');
@@ -21,15 +22,13 @@ export const CartProvider = ({ children }) => {
       const existingProduct = cart.find((item) => item.id === product.id);
   
       if (existingProduct) {
-          // Tăng số lượng sản phẩm lên nếu sản phẩm đã có trong giỏ hàng
           setCart(
               cart.map((item) =>
                   item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
               )
           );
       } else {
-          // Thêm sản phẩm vào giỏ hàng với số lượng là 1 nếu sản phẩm chưa có trong giỏ hàng
-          setCart([...cart, { ...product, quantity: 1 }]);
+          setCart([...cart, { ...product, quantity: 1, price: product.price }]);
       }
   };
   const removeFromCart = (productId) => {
@@ -53,18 +52,31 @@ export const CartProvider = ({ children }) => {
   };
   
 
-const increaseItem = (itemId) => {
-    setCart(
-        cart.map((item) =>
-            item.id === itemId ? { ...item, quantity: item.quantity + 1 } : item
-        )
-    );
-};
+  const increaseItem = (itemId) => {
+      setCart(
+          cart.map((item) =>
+              item.id === itemId ? { ...item, quantity: item.quantity + 1 } : item
+          )
+      );
+  };
 
+  useEffect(() => {
+    let total = 0;
+    cart.forEach((item) => {
+        const quantity = Number(item.quantity);
+        const price = Number(item.price);
+        console.log(quantity, price);
+        if (!isNaN(quantity) && !isNaN(price)) {
+            total += quantity * price;
+        }
+    });
+    setTotalCart(total);
+  
+}, [cart]);
 
 
   return (
-      <CartContext.Provider value={{ cart, addToCart, decreaseItem, increaseItem, removeFromCart }}>
+      <CartContext.Provider value={{ cart, addToCart, decreaseItem, increaseItem, removeFromCart, grandTotal}}>
           {children}
       </CartContext.Provider>
   );
