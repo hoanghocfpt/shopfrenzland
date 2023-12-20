@@ -24,6 +24,7 @@ const Main = () => {
         if (product) {
           let productToCart = {
             id: product.id,
+            name: product.title,
             price: product.price, // Add this line
           };
     

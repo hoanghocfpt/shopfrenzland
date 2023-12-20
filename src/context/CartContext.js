@@ -30,6 +30,7 @@ export const CartProvider = ({ children }) => {
       } else {
           setCart([...cart, { ...product, quantity: 1, price: product.price }]);
       }
+      
   };
   const removeFromCart = (productId) => {
     const updatedCartItems = cart.filter((item) => item.id !== productId);

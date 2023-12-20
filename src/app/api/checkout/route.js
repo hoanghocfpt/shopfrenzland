@@ -1,4 +1,6 @@
 
+
+import { NextResponse } from "next/server";
 var stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 var getActiveProducts = async function () {
@@ -11,6 +13,7 @@ var getActiveProducts = async function () {
 
 export async function POST(request) {
   var products = (await request.json()).products;
+  
   var data = products;
 
   var activeProducts = await getActiveProducts();
@@ -57,14 +60,15 @@ export async function POST(request) {
       }
     }
   }
-  console.log(stripeItems);
+
+
 
   var session = await stripe.checkout.sessions.create({
-    line_items: stripeItems,
     mode: "payment",
+    line_items: stripeItems,
     success_url: "http://localhost:3000/success",
     cancel_url: "http://localhost:3000/cancel",
   });
 
-  return { url: session.url };
+  return NextResponse.json({ url: session.url });
 }
