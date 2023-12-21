@@ -66,8 +66,8 @@ export async function POST(request) {
   var session = await stripe.checkout.sessions.create({
     mode: "payment",
     line_items: stripeItems,
-    success_url: "http://localhost:3000/success",
-    cancel_url: "http://localhost:3000/cancel",
+    success_url: "https://shopfrenzland.vercel.app/success",
+    cancel_url: "https://shopfrenzland.vercel.app/cancel",
   });
 
   return NextResponse.json({ url: session.url });
