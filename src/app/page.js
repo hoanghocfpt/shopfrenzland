@@ -1,12 +1,12 @@
-import HomePage from './home/page'
-import ProductDEMO from './demo/page'
-import PreviewPage from './demo/page'
+import HomePage from "./home/page";
+import ShopPage from "./shop/page";
+
 
 export default function Home() {
   return (
     <>
-      {/* <HomePage></HomePage> */}
-      <PreviewPage></PreviewPage>
+      <ShopPage />
+
     </>
   )
 }
