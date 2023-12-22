@@ -4,7 +4,7 @@ import React from 'react';
 
 const ProductCardItem = ({ id, title, image, description, price }) => {
     return (
-      <Link href={`/products/${id}`}>
+      <Link href={`/products/${id}`} className='flex justify-center'>
         <div className="max-w-md rounded-md overflow-hidden shadow-lg w-full">
           <div className="flex justify-center h-96">
             <Image className='w-full h-full object-cover' src={image} alt={title} width={262} height={358} />

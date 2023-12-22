@@ -15,7 +15,7 @@ const ShowAllProducts = () => {
     }, []);
 
     return (
-        <div className='grid grid-cols-1 gap-6 justify-end p-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3'>
+        <div className='grid grid-cols-1 gap-6 justify-end p-4 px-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3'>
                 {Array.isArray(products) && products.map(product => 
                 <ProductCardItem 
                     key={product.id}

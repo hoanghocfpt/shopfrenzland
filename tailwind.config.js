@@ -11,7 +11,7 @@ module.exports = {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-        'background-image-homepage': 'url("https://e-commerce-payload-8e26543.payloadcms.app/media/Hero-image-2.png")',
+        'background-image-homepage': 'url("/asset/banner/bg.png")',
       },
     },
   },
