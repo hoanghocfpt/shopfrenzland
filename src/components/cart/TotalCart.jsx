@@ -6,7 +6,7 @@ const TotalCart = () => {
     const { cart, grandTotal } = useContext(CartContext);
     console.log(cart);
     const checkout = async () => {
-        await fetch("https://shopfrenzland.vercel.app/api/checkout", {
+        await fetch(`http://localhost:3000/api/checkout`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
