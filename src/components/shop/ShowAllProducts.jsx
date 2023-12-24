@@ -5,7 +5,7 @@ const ShowAllProducts = () => {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        fetch('https://fakestoreapi.com/products')
+        fetch('http://localhost:3000/api/products')
             .then(res=>res.json())
             .then(data => {
                 console.log(data); // Kiểm tra dữ liệu trả về

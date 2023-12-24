@@ -8,8 +8,8 @@ const HomePage = () => {
         <div className='min-h-dvh'>
             <div className='bg-background-image-homepage bg-center md:bg-right lg:bg-center mb-6 bg-no-repeat w-full h-[50vh] md:h-[70vh] max-w-screen-xl mx-auto px-6 sm:px-4 md:px-4 lg:px-4'>
                 <div className='w-full h-full justify-center flex flex-col'>
-                    <h1 className='text-4xl md:text-6xl mb-4 font-extrabold'>Shopping with Bobby</h1>
-                    <p className='text-lg md:w-1/2 mb-6'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque aut voluptatibus autem sed dolorem!</p>
+                    <h1 className='text-4xl md:text-6xl mb-6 font-extrabold'>Shopping with Bobby</h1>
+                    {/* <p className='text-lg md:w-1/2 mb-6'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque aut voluptatibus autem sed dolorem!</p> */}
                     <Link href='/shop'>
                         <div className='inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-black hover:bg-gray-800'>
                             <span className='text-white mr-3 leading-none uppercase font-semibold'>Shopping now</span>
