@@ -1,6 +1,6 @@
 
 import React from 'react';
-import ProductCardItem from '../../../components/ProductCardItem'; // Ensure this path is correct and the component name is capitalized
+
 import Main from '../../../components/products/Main';
 const ProductDetailsPage = () => {
     return (
