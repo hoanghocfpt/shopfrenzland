@@ -1,4 +1,4 @@
-import ProductCardItem from '@/components/ProductCardItem';
+
 import ShowAllProducts from '@/components/shop/ShowAllProducts';
 import Link from 'next/link';
 import React from 'react';
@@ -6,7 +6,7 @@ import React from 'react';
 const HomePage = () => {
     return (
         <div className='min-h-dvh'>
-            <div className='bg-background-image-homepage bg-center md:bg-right lg:bg-center mb-6 bg-no-repeat w-full h-[50vh] md:h-[70vh] max-w-screen-xl mx-auto px-6 sm:px-4 md:px-4 lg:px-4'>
+            <div className='bg-background-image-homepage bg-center md:bg-right lg:bg-center mb-6 bg-no-repeat w-full h-[50vh] md:h-[600px] max-w-screen-xl mx-auto px-6 sm:px-4 md:px-4 lg:px-4'>
                 <div className='w-full h-full justify-center flex flex-col'>
                     <h1 className='text-4xl md:text-6xl mb-6 font-extrabold'>Shopping with Bobby</h1>
                     {/* <p className='text-lg md:w-1/2 mb-6'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque aut voluptatibus autem sed dolorem!</p> */}

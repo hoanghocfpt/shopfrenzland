@@ -10,11 +10,13 @@ const jost= Jost({ weight: ['100','200','300','400','500','600','700','800','900
 export const metadata = {
   title: 'The Shop Bobby',
   description: 'Buy everything you want here',
+  
 }
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <link rel="icon" href="/favicon.ico" sizes="any" />
       <body className={jost.className}>
         <div className=''>
           <CartProvider>

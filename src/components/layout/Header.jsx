@@ -26,9 +26,9 @@ const Header = () => {
                             </Link>
                         </div>
                         <CountCart />
-                        <button className="inline-flex uppercase items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-black hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black">
+                        <Link href={'/login'} className="inline-flex uppercase items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-black hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black">
                             Login
-                        </button>
+                        </Link>
                     </div>
                     <div className='cursor-pointer flex gap-3 items-center sm:hidden'>
                         <CountCart />
