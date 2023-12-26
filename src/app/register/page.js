@@ -1,27 +1,43 @@
 "use client";
+import { useSession } from "next-auth/react";
+import { redirect } from "next/navigation";
 import Link from "next/link";
 import { useState } from "react";
 
 
 const RegisterPage = () => {
+    const session = useSession();
+    const status = session?.status;
+ 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [created, setCreated] = useState(false);
+    const [error, setError] = useState(false);
+
+    if(status === 'authenticated'){
+        return redirect('/home');
+    }
+
+ 
     async function handleFormSubmit(ev) {
         console.log({ name, email, password });
         ev.preventDefault();
-        await fetch('/api/register', {
+        const response = await fetch('/api/register', {
             method: 'POST',
             body: JSON.stringify({ name, email, password }),
             headers: {
                 'Content-Type': 'application/json'
             },
-        }).then(res => res.json()).then(data => {
-            if (data.success) {
-                setCreated(true);
-            }
-        });
+        })
+        if (response.ok){
+            setCreated(true);
+            setError(false);
+        }else{
+            setCreated(false);
+            setError(true);
+        }
+
     }
     return (
         <div className='max-w-screen-xl py-8 px-4 mx-auto min-h-[80vh]'>
@@ -52,6 +68,13 @@ const RegisterPage = () => {
                                 <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
                             </svg>
                             <span>Create account success.</span>
+                            <Link href='/login' className='underline'>Login now!</Link>
+                        </p>}
+                        {error && <p className='text-red-600 text-lg flex items-center gap-1 justify-center py-3'>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                            </svg>
+                            <span>Account already exists.</span>
                             <Link href='/login' className='underline'>Login now!</Link>
                         </p>}
                     </div>

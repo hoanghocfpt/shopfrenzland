@@ -1,26 +1,35 @@
 "use client";
+import { signIn, useSession } from "next-auth/react"
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { useState } from "react";
 
-
 const LoginPage = () => {
+    const session = useSession();
+    const status = session?.status;
+    
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    async function handleFormSubmit(ev) {
-        console.log({ email, password });
-        ev.preventDefault();
-        await fetch('/api/register', {
-            method: 'POST',
-            body: JSON.stringify({ email, password }),
-            headers: {
-                'Content-Type': 'application/json'
-            },
-        }).then(res => res.json()).then(data => {
-            if (data.success) {
-                setCreated(true);
-            }
-        });
+    const [error, setError] = useState(false);
+    if(status === 'authenticated'){
+        return redirect('/home');
     }
+
+    async function handleFormSubmit(ev) {
+        ev.preventDefault();
+        const result = await signIn('credentials', {
+            redirect: false, // Ngăn chặn việc chuyển hướng tự động
+            email,
+            password
+        });
+    
+        if (result.error) {
+            setError(true);
+        } else {
+            // Đăng nhập thành công, bạn có thể chuyển hướng người dùng hoặc làm gì đó khác
+        }
+    }
+   
     return (
         <div className='max-w-screen-xl py-8 px-4 mx-auto min-h-[80vh]'>
             <h2 className='text-3xl font-bold text-center mb-2'>Login</h2>
@@ -37,7 +46,12 @@ const LoginPage = () => {
                     </div>
                     <div className='flex flex-col mb-6 w-full'>
                         <button className='border border-black py-2 px-4 bg-black text-white text-lg rounded-md' type="submit">Login</button>
-                       
+                        {error && <p className='text-red-600 text-lg flex items-center gap-1 justify-center py-3'>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+                            </svg>
+                            <span>Email or password is incorrect. Please try again!</span>
+                        </p>}
                     </div>
                 </form>
                 <div className='mb-8'>

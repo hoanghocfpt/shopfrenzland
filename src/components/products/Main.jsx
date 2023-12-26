@@ -12,11 +12,11 @@ const Main = () => {
     let id = useParams().slug;
 
     useEffect(() => {
-        fetch('https://fakestoreapi.com/products/'+id)
+        fetch('products/'+id)
             .then(res=>res.json())
             .then(json=>setProduct(json))
             .catch(error => console.error('Error:', error));
-    }, []);
+    }, [id]);
 
   
 
