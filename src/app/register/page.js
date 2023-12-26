@@ -10,7 +10,8 @@ const RegisterPage = () => {
     const status = session?.status;
  
     const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
+    const [emailOK, setEmail] = useState('');
+    const email = emailOK.toLowerCase();
     const [password, setPassword] = useState('');
     const [created, setCreated] = useState(false);
     const [error, setError] = useState(false);
@@ -21,7 +22,7 @@ const RegisterPage = () => {
 
  
     async function handleFormSubmit(ev) {
-        console.log({ name, email, password });
+        setError(false);
         ev.preventDefault();
         const response = await fetch('/api/register', {
             method: 'POST',
@@ -51,7 +52,7 @@ const RegisterPage = () => {
                     </div>
                     <div className='flex flex-col mb-4 w-full'>
                         <label className='mb-2' htmlFor='name'>Email address:</label>
-                        <input value={email} onChange={ev => setEmail(ev.target.value)} className='border border-gray-400 py-2 px-4 text-lg rounded-md outline-none' type="text" name="email" placeholder='enter email'/>
+                        <input value={emailOK} onChange={ev => setEmail(ev.target.value)} className='border border-gray-400 py-2 px-4 text-lg rounded-md outline-none' type="text" name="email" placeholder='enter email'/>
                     </div>
                     <div className='flex flex-col mb-4 w-full'>
                         <label className='mb-2' htmlFor='name'>Password:</label>
