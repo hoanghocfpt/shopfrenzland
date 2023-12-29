@@ -4,15 +4,15 @@ import Link from 'next/link';
 import { signOut } from 'next-auth/react';
 import React from 'react';
 
-const Navbar = () => {
+const Navbar = ({userName, userEmail}) => {
     
     return (
         <div className='border border-gray-200 rounded-lg h-fit'>
             <div className='py-4 px-6 flex gap-4 border-b'>
                 <Image src="/asset/icons/profile.svg" alt="avatar" width={50} height={50} />
                 <div className='flex flex-col'>
-                    <span className='font-semibold text-lg'>phamvanhoang</span>
-                    <span className='text-base'>iloveanh18@gmail.com</span>
+                    <span className='font-semibold text-lg'>{userName}</span>
+                    <span className='text-base'>{userEmail}</span>
                 </div>
             </div>
             <div>
