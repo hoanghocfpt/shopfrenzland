@@ -4,7 +4,7 @@ import { useSession } from 'next-auth/react';
 import React, {useEffect, useState} from 'react';
 
 const MyAccount = () => {
-    const {data: session, status}= useSession();
+    const { data: session, status, update } = useSession();
     const [name, setName] = useState('');
     const useEmail = session?.user?.email;
     const nameUser = session?.user?.name;
@@ -27,20 +27,25 @@ const MyAccount = () => {
           },
           body: JSON.stringify({ name: name }),
         });
-      
-      
-      }
+        
+        
+        if (response.ok) {
+            const nameOK = name;
+            await update({ name: nameOK });
+        }
+    }
 
        
             
     return (
         <div>
+        
             <h3 className='text-2xl font-semibold mb-4'>Personal Information</h3>
             <div>
                 <form className='w-full mx-auto py-2' onSubmit={handleUpdateAccount}>
                     <div className='flex flex-col mb-4 w-full'>
                         <label className='mb-2' htmlFor='email'>Email address:</label>
-                        <input disabled value={useEmail} className='border text-gray-600 border-gray-400 py-2 px-4 text-lg rounded-lg outline-none' type="text" name="email" placeholder='enter email'/>
+                        <input disabled value={useEmail} className='border text-gray-600 border-white py-2 px-4 text-lg rounded-lg bg-gray-100 outline-none' type="text" name="email" placeholder='enter email'/>
                     </div>
                     <div className='flex flex-col mb-6 w-full'>
                         <label className='mb-2' htmlFor='name'>Name:</label>

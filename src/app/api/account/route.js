@@ -1,10 +1,8 @@
-import mongoose from "mongoose";
+import { createConnection } from 'mysql2/promise';
 import { getServerSession } from "next-auth";
-// import {  } from "@/app/api/auth/[...nextauth]/route";
-import { User } from "@/models/User";
-export async function PUT (req) {
-    mongoose.connect(process.env.MONGO_URL)
-    
+import CredentialsProvider from "next-auth/providers/credentials";
+
+export async function PUT(req) {
     const data = await req.json();
     const session = await getServerSession({
         secret: process.env.SECRET,
@@ -20,26 +18,41 @@ export async function PUT (req) {
                   console.log({credentials});
                   const email = credentials?.email;
                   const password = credentials?.password;
-    
-                  mongoose.connect(process.env.MONGO_URL);
-                  const user = await User.findOne({email});
-    
-                  if(user && user.password === password) {
-                    return user;
+
+                  const connection = await createConnection({
+                    host: process.env.MYSQL_HOST,
+                    user: process.env.MYSQL_USER,
+                    password: process.env.MYSQL_PASSWORD,
+                    database: process.env.MYSQL_DATABASE
+                  });
+
+                  const [rows] = await connection.execute('SELECT * FROM users WHERE email = ? AND password = ?', [email, password]);
+                  await connection.end();
+
+                  if(rows.length > 0) {
+                    return rows[0];
                   }
                   
-                  return null
+                  return null;
                 }
             })
         ],
     });
+
     const email = session.user.email;
     if('name' in data){
-        await User.updateOne({email}, {name:data.name})
-        
+        const connection = await createConnection({
+          host: process.env.MYSQL_HOST,
+          user: process.env.MYSQL_USER,
+          password: process.env.MYSQL_PASSWORD,
+          database: process.env.MYSQL_DATABASE
+        });
+
+        await connection.execute('UPDATE users SET name = ? WHERE email = ?', [data.name, email]);
+        await connection.end();
     }
+
     console.log({session, data});
 
-    return Response.json(true)
-
+    return Response.json(true);
 }
