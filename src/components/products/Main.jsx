@@ -10,24 +10,41 @@ const Main = () => {
     const [product, setProduct] = useState(null);
     const [addedToCart, setAddedToCart] = useState(false);
     let id = useParams().slug;
+    console.log(id);
 
     useEffect(() => {
-        fetch('products/'+id)
-            .then(res=>res.json())
-            .then(json=>setProduct(json))
-            .catch(error => console.error('Error:', error));
+        const fetchData = async () => {
+            await fetch(`http://localhost:3000/api/products/`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+                .then(res=>res.json())
+                .then(json=>setProduct(json))
+                .catch(error => console.error('Error:', error));
+        }
+        fetchData();
     }, [id]);
-
-  
+    console.log(product);
+    var productDetail;
+    if(product){
+        product.forEach(e => {
+            if (e.id == id) {   
+                productDetail= e;
+            }
+        });
+    }
 
     const handleAddToCart = () => {
         if (product) {
           let productToCart = {
-            id: product.id,
-            name: product.title,
-            price: product.price, // Add this line
+            id: productDetail.id,
+            name: productDetail.name,
+            image: productDetail.image,
+            price: productDetail.price, // Add this line
           };
-    
+          console.log(productToCart);
           addToCart(productToCart);
           setAddedToCart(true);
         }
@@ -35,14 +52,14 @@ const Main = () => {
     return (
         <div className='flex w-full'>
         <div className='flex-shrink-0 pr-8 w-5/12'>
-            {product && <Image id='imgProduct' src={product.image} className='w-full h-full object-cover' alt="hero" width={333} height={416} />}
+            {product && <Image id='imgProduct' src={productDetail.image} className='w-full h-full object-cover' alt="hero" width={333} height={416} />}
         </div>
         <div className='flex-shrink-0 w-7/12 p-4'>
-            {product && <h3 id='nameProduct' className='font-bold text-3xl'>{product.title}</h3>}
-            {product && <div id='priceProduct' className='text-2xl font-medium my-4'>${product.price}</div>}
+            {product && <h3 id='nameProduct' className='font-bold text-3xl'>{productDetail.name}</h3>}
+            {product && <div id='priceProduct' className='text-2xl font-medium my-4'>${productDetail.price}</div>}
             <div className='my-5'>
                 <span className='font-bold text-lg'>Description</span>
-                {product && <p>{product.description}</p>}
+                {product && <p>{productDetail.description}</p>}
             </div>
             <button className='text-lg font-medium w-full bg-black px-6 py-3 text-white rounded-lg'>
             {addedToCart ? (

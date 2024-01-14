@@ -54,9 +54,7 @@ const Header = () => {
                                     <Link onClick={closeNavbar} href="/account" className="border-transparent text-black uppercase hover:text-gray-600 inline-flex items-center px-1 pt-1 border-b-2 text-base font-medium">
                                         My Account
                                     </Link>
-                                    <button onClick={() => signOut()} className="border-transparent text-black uppercase hover:text-gray-600 inline-flex items-center px-1 pt-1 border-b-2 text-base font-medium">
-                                        Logout
-                                    </button>
+                                 
                                 </>
                             )}
                         </div>
