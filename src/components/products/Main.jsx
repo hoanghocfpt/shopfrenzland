@@ -14,7 +14,7 @@ const Main = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            await fetch(`http://localhost:3000/api/products/`, {
+            await fetch(`https://api.frenzland.com/products/`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',

@@ -12,7 +12,7 @@ const CartMain = () => {
     const [products, setProducts] = useState([]); // Thêm state này để lưu thông tin chi tiết của sản phẩm
 
     if (cart.length === 0) {
-        return <p>Giỏ hàng trống</p>;
+        return <p>Cart is empty!</p>;
     }
     
     console.log(products);
